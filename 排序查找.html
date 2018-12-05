@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	arr = [32,5,11,90,41,10];
+	var newArr =[];
+	function findSmallest(targetArr){
+		var smallest = targetArr[0];
+		var index = 0;
+		for(var i = 1;i<targetArr.length-1;i++){
+			if(targetArr[i]<smallest){
+				smallest  = targetArr[i];
+				index = i;
+			}
+		}
+		return smallest;
+	}
+	for(var i = 0;i<arr.length-1;i++){
+		var result = findSmallest(arr);
+		console.log(result);
+		arr.splice(result,1);
+		// console.log(arr);
+	}
+	// console.log(newArr);
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 快速排序法
+	function quicksort(targetArr){
+		if(targetArr.length<2){
+			return targetArr;
+		}
+		else{
+			var pivot = targetArr[0];
+			var less=[],great = [];
+			for(var i = 1;i<targetArr.length;i++){
+				
+				if(targetArr[i]<=pivot){
+					less.push(targetArr[i]);
+				}
+				else{
+					great.push(targetArr[i]);
+				}
+			}
+			return quicksort(less).concat([pivot]).concat(quicksort(great));
+		}
+	}
+	console.log(quicksort([10,5,2,3,2,5,6]));
+</script>

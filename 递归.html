@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 递归求和	
+	var sum=0;
+	function sumArr(targetArr){
+		sum+=targetArr[0];
+		targetArr.splice(0,1);
+		if(targetArr.length){ //递归条件
+			return sumArr(targetArr);
+		}	
+		else{                //基线条件
+			return sum;
+		}
+	}
+	console.log(sumArr([1,3,2,5,2,23,3]));
+
+	//二分查找回调
+	function find(targetArr,target){
+		var min = 0,max = targetArr.length -1;
+		var mid;
+		return callBack();	
+
+		function callBack(){
+			var mid = parseInt((min+max)/2);
+			// 基线条件
+			if(targetArr[mid] == target){
+				return mid;
+			}
+			// 递归条件
+			else if(targetArr[mid]<target){
+				min = mid +1;
+			}
+			else{
+				max = mid -1;
+			}
+			return callBack();
+		}
+
+	}
+	console.log(find([1,2,3,4,5,6,7,8],2));
+</script>

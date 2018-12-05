@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	var graph = {}; 
+	graph["you"] = ["alice", "bob", "claire"]; 
+	graph["bob"] = ["anuj", "peggy"]; 
+	graph["alice"] = ["peggy"];
+	graph["claire"] = ["thom", "jonny"]; 
+	graph["anuj"] = []; 
+	graph["peggy"] = []; 
+	graph["thom"] = []; 
+	graph["jonny"] = [];
+
+	var searchQueue=[];
+	var searched = [];
+	function search(name){
+		if (searchedName(searched,name)){
+			
+			searchQueue.push(graph[name]);
+			console.log(searchQueue);
+			if(searchQueue==[]){
+				return false;
+			}
+			else{
+				person = searchQueue[0];
+				if(person_is_seller(person)){
+					console.log(person + "is a mango seller!");
+					return true;
+				}
+
+				else{
+					searched.push(person);
+					searchQueue.concat(graph[person]);
+					searchQueue.shift(person);
+					person = searchQueue[0];
+					return search(person);
+				}
+			}
+		}	
+	}
+
+	function person_is_seller(targetPerson){
+		console.log(targetPerson);
+		return targetPerson[-1] == 'e';
+	}
+
+
+	function searchedName(searched,targetName){
+		for(var i =0;i<searched.length-1;i++){
+
+			if(searched[i]==targetName){
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	}
+
+
+
+	search("alice");
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 递归函数
+	var sum = 0;
+	function sumArr(arr){
+		sum+=arr[0];
+		arr.splice(0,1);
+		if(arr.length){   //递归条件
+			return sumArr(arr);  
+		}
+		else{
+			return sum;
+		}
+	}	
+
+	console.log(sumArr([1,2,3,4,5]));
+</script>

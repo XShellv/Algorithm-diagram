@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 二分查找适用于有序数组
+	function findPositon(targetArr,target){
+		var min = 0 ,max = arr.length - 1;
+		while(min<=max){
+			var mid = parseInt((min+max)/2);
+			var index = arr[mid];
+			if(index == target){
+				return mid;
+			}
+			else if(index<target){
+				min = mid + 1;
+			}
+			else{
+				max = mid - 1;
+			}
+		}
+		return null;	
+	}
+	arr = [1,3,5,7,9,12];
+	console.log(findPositon(arr,12));
+</script>

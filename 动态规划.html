@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 定义背包的容量
+	var bag_max = 4;
+	// 定义目标物品属性
+	var stolen =[];
+	stolen[1]={"name":"音响","taken":4,"price":3000};
+	stolen[2]={"name":"笔记本","taken":3,"price":2000};
+	stolen[3]={"name":"吉他","taken":1,"price":1500};
+	stolen[4]={"name":"Iphone","taken":1,"price":2000};
+	stolen[5]={"name":"MP3","taken":1,"price":1000};
+
+	// 定义一个二维数组;
+	var arr =new Array();
+	var x=bag_max+1,y=stolen.length;
+	for(var i = 0;i<x;i++){
+		arr[i]=new Array();
+		for(var j = 0;j<y;j++){
+			if(i==0 || j==0){
+				arr[i][j]={"max":0,"choice":[]};
+			}
+			else{
+				arr[i][j]={"max":null,"choice":[]};
+			}
+			
+		}
+	}
+
+	// 找出最大价值
+	function max(){
+		for(var j = 1;j<y;j++){
+			for(var i = 1;i<x;i++){
+				// 如果要偷的物品小于背包容量，则为0；
+				if(stolen[j]["taken"]>i){
+					arr[i][j]["max"]=0;
+				}
+				// 否则对vs1和vs2进行比较
+				else{
+					var vs1 = arr[i-1][j-1]["max"]+stolen[j]["price"];
+					var vs2 = arr[i][j-1]["max"];
+					if(vs1>=vs2){
+						arr[i][j]["max"] = vs1;
+						arr[i][j]["choice"] = arr[i-1][j-1]["choice"].concat([stolen[j]["name"]]);
+					}
+					else{
+						arr[i][j]["max"] = vs2;
+						arr[i][j]["choice"]= arr[i][j-1]["choice"];
+					}
+				}
+			}
+		}
+		return arr[x-1][y-1];
+	}
+	// 遍历取出目标物品
+	var total = "";
+	for(var k in max()["choice"]){
+		total = total + max()["choice"][k]+",";	
+	}
+	console.log("应当偷取的物品有"+total+"他们的最大价值为"+max()["max"]+"元。");
+</script>
